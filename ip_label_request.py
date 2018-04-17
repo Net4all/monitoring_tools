@@ -6,7 +6,7 @@
     Author: Kevin Chollet @ Net4all
     Date created: 11/04/2018
     Date last modified: 16/04/2018
-    Python Version: 2.7.3
+    Python Version: 2.7.3 | 3.2.3
 '''
 
 import requests
