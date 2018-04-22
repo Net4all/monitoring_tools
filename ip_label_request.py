@@ -33,6 +33,9 @@ parser.add_argument('-r', '--red',
     action="store", dest="orange",
     help="Enable warning on red state", default="true", choices=['false', 'true'])
 
+parser.add_argument('-f', '--filter',
+    action="store", dest="filter",
+    help="Add filter on monitor")
 
 options = parser.parse_args()
 
