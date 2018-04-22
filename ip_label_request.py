@@ -67,8 +67,7 @@ for key in alert_list:
 				return_code=1
 			elif alert_list[key]["TYPEALARME"] == "BLACK":
 				return_code=2
-			print("Alert %s on monitor %s" % (alert_list[key]["TYPEALARME"], 
-display_name[alert_list[key]["IDCONTRAT"]]))
+			print("Alert %s on monitor %s" % (alert_list[key]["TYPEALARME"], display_name[alert_list[key]["IDCONTRAT"]]))
 
 sys.exit(return_code);
 
