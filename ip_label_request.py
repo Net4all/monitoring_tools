@@ -33,6 +33,9 @@ parser.add_argument('-r', '--red',
     action="store", dest="orange",
     help="Enable warning on red state", default="true", choices=['false', 'true'])
 
+parser.add_argument('-f', '--filter',
+    action="store", dest="filter",
+    help="Add filter on monitor")
 
 options = parser.parse_args()
 
@@ -57,14 +60,14 @@ alert_list = alarms_data["Ipln_WS_REST_datametrie"]["Get_Current_Alarms_All_Moni
 return_code=0
 for key in alert_list:
 	if key != "status" :
-		if alert_list[key]["TYPEALARME"] == "ORANGE" and return_code<2 and options.orange == "true":
-			return_code=1
-		elif alert_list[key]["TYPEALARME"] == "RED" and return_code<2 and options.red == "true":
-			return_code=1
-		elif alert_list[key]["TYPEALARME"] == "BLACK":
-			return_code=2
-		print("Alert %s on monitor %s" % (alert_list[key]["TYPEALARME"], 
-display_name[alert_list[key]["IDCONTRAT"]]))
+		if options.filter is None or options.filter in display_name[alert_list[key]["IDCONTRAT"]] :
+			if alert_list[key]["TYPEALARME"] == "ORANGE" and return_code<2 and options.orange == "true":
+				return_code=1
+			elif alert_list[key]["TYPEALARME"] == "RED" and return_code<2 and options.red == "true":
+				return_code=1
+			elif alert_list[key]["TYPEALARME"] == "BLACK":
+				return_code=2
+			print("Alert %s on monitor %s" % (alert_list[key]["TYPEALARME"], display_name[alert_list[key]["IDCONTRAT"]]))
 
 sys.exit(return_code);
 
