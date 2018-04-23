@@ -60,7 +60,7 @@ alert_list = alarms_data["Ipln_WS_REST_datametrie"]["Get_Current_Alarms_All_Moni
 return_code=0
 for key in alert_list:
 	if key != "status" :
-		if options.filter == "" or display_name[alert_list[key]["IDCONTRAT"]] == options.filter:
+		if options.filter is None or options.filter in display_name[alert_list[key]["IDCONTRAT"]] :
 			if alert_list[key]["TYPEALARME"] == "ORANGE" and return_code<2 and options.orange == "true":
 				return_code=1
 			elif alert_list[key]["TYPEALARME"] == "RED" and return_code<2 and options.red == "true":
